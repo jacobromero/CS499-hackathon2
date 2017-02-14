@@ -35,10 +35,9 @@ module.exports.getBusTimes = (event, context, callback) => {
       TableName: shuttleTimes,
   };
 
-  console.log("Scanning Movies table.");
+  console.log("Scanning table.");
   docClient.scan(params, function (err, data) {
     if (err) {
-      console.log("error scanning");
       const response = {
         statusCode: 200,
         headers: {
@@ -51,7 +50,6 @@ module.exports.getBusTimes = (event, context, callback) => {
     } else {
       console.log("done scanning");
 
-      console.log(data);
       const response = {
         statusCode: 200,
         headers: {
@@ -78,7 +76,6 @@ function putItem (id, logoUrl, lat, long, route, timestamp) {
     }
   };
 
-  // console.log();
   docClient.put(params, function(err, data) {
     if (err) {
       console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
@@ -101,7 +98,6 @@ function putItem (tableName, id, logoUrl, lat, long, route) {
     }
   };
 
-  // console.log();
   docClient.put(params, function(err, data) {
     if (err) {
       console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
@@ -111,6 +107,7 @@ function putItem (tableName, id, logoUrl, lat, long, route) {
   });       
 }
 
+// put shuttle times into the current shuttle times table
 function putShuttleTimes (tableName, id, logoUrl, lat, long, route) {
   var params = {
     TableName:tableName,
@@ -123,7 +120,6 @@ function putShuttleTimes (tableName, id, logoUrl, lat, long, route) {
     }
   };
 
-  // console.log();
   docClient.put(params, function(err, data) {
     if (err) {
       console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
