@@ -16,8 +16,8 @@ module.exports.updateTables = (event, context, callback) => {
 
         for (var i = 0; i < resp.length; i++) {
           var item = resp[i];
-          putItem(table, item.id, item.logo, item.lat, item.lng, item.route, Date.now());
-          putItem(shuttleTimes, item.id, item.logo, item.lat, item.lng, item.route);
+          putItem(table, item.id, item.logo, item.lat, item.lng, item.route);
+          putShuttleTimes(shuttleTimes, item.id, item.logo, item.lat, item.lng, item.route);
         }
 
         const response = {
@@ -93,6 +93,29 @@ function putItem (tableName, id, logoUrl, lat, long, route) {
     TableName:tableName,
     Item:{
       "busID": id,
+      "logo": logoUrl,
+      "lat": lat,
+      "long": long,
+      "route": route,
+      "timestamp": Date.now()
+    }
+  };
+
+  // console.log();
+  docClient.put(params, function(err, data) {
+    if (err) {
+      console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+    } else {
+      console.log("Added item:", JSON.stringify(data, null, 2));
+    }
+  });       
+}
+
+function putShuttleTimes (tableName, id, logoUrl, lat, long, route) {
+  var params = {
+    TableName:tableName,
+    Item:{
+      "id": id,
       "logo": logoUrl,
       "lat": lat,
       "lng": long,
