@@ -163,7 +163,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/hackathon/dev/1487029909401-2017-02-13T23:51:49.401Z/hackathon.zip"
+          "S3Key": "serverless/hackathon/dev/1487128671582-2017-02-15T03:17:51.582Z/hackathon.zip"
         },
         "FunctionName": "hackathon-dev-hello",
         "Handler": "handler.updateTables",
@@ -182,14 +182,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "HelloLambdaVersionyCfdB0un6AL9GGfK1tC5ldvhCYgH9NSvrvb6UNaQNyM": {
+    "HelloLambdaVersionknzp36PXsTCrvKokKfic6aCxeR0hezwuxprEyzXVj8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "yCfdB0un6AL9GGfK1tC5ldvhCYgH9NSvrvb6UNaQNyM="
+        "CodeSha256": "knzp/36PXsTCrvKokKfic6aCxeR0hezwuxprEyzXVj8="
       }
     },
     "GetDataLambdaFunction": {
@@ -199,7 +199,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/hackathon/dev/1487029909401-2017-02-13T23:51:49.401Z/hackathon.zip"
+          "S3Key": "serverless/hackathon/dev/1487128671582-2017-02-15T03:17:51.582Z/hackathon.zip"
         },
         "FunctionName": "hackathon-dev-getData",
         "Handler": "handler.getBusTimes",
@@ -218,14 +218,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "GetDataLambdaVersionyCfdB0un6AL9GGfK1tC5ldvhCYgH9NSvrvb6UNaQNyM": {
+    "GetDataLambdaVersionknzp36PXsTCrvKokKfic6aCxeR0hezwuxprEyzXVj8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetDataLambdaFunction"
         },
-        "CodeSha256": "yCfdB0un6AL9GGfK1tC5ldvhCYgH9NSvrvb6UNaQNyM="
+        "CodeSha256": "knzp/36PXsTCrvKokKfic6aCxeR0hezwuxprEyzXVj8="
       }
     },
     "ApiGatewayRestApi": {
@@ -259,6 +259,52 @@
           ]
         },
         "PathPart": "bustimes",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodUpdatetablesOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'",
+                "method.response.header.Access-Control-Allow-Credentials": "'false'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceUpdatetables"
+        },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -386,7 +432,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1487029909445": {
+    "ApiGatewayDeployment1487128671624": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -475,13 +521,13 @@
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersionyCfdB0un6AL9GGfK1tC5ldvhCYgH9NSvrvb6UNaQNyM"
+        "Ref": "HelloLambdaVersionknzp36PXsTCrvKokKfic6aCxeR0hezwuxprEyzXVj8"
       }
     },
     "GetDataLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetDataLambdaVersionyCfdB0un6AL9GGfK1tC5ldvhCYgH9NSvrvb6UNaQNyM"
+        "Ref": "GetDataLambdaVersionknzp36PXsTCrvKokKfic6aCxeR0hezwuxprEyzXVj8"
       }
     },
     "ServiceEndpoint": {
